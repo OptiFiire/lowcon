@@ -1,6 +1,6 @@
 {
   "name": "lowkey-console",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A customizable, professional and lowkey console message logger for Node.js with colorful output.",
   "main": "lib/print.js",
   "directories": {
