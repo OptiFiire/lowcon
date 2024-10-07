@@ -1,19 +1,31 @@
 {
-  "name": "pretty-print-js",
+  "name": "lowkey-console",
   "version": "1.0.0",
-  "description": "A customizable console message logger for Node.js with colored output.",
+  "description": "A customizable, professional and lowkey console message logger for Node.js with colorful output.",
   "main": "lib/print.js",
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OptiFiire/lowkey-console.git"
   },
   "keywords": [
     "console",
     "log",
-    "logging",
+    "logger",
+    "terminal",
     "pretty",
-    "colors",
-    "node"
+    "lowkey",
+    "colorful"
   ],
-  "author": "Your Name",
-  "license": "MIT"
+  "author": "OptiFire",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OptiFiire/lowkey-console/issues"
+  },
+  "homepage": "https://github.com/OptiFiire/lowkey-console#readme"
 }
