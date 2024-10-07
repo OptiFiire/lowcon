@@ -1,0 +1,19 @@
+{
+  "name": "pretty-print-js",
+  "version": "1.0.0",
+  "description": "A customizable console message logger for Node.js with colored output.",
+  "main": "lib/print.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "console",
+    "log",
+    "logging",
+    "pretty",
+    "colors",
+    "node"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
