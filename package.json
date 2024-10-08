@@ -1,8 +1,8 @@
 {
-  "name": "lowkey-console",
-  "version": "1.0.1",
-  "description": "A customizable, professional and lowkey console message logger for Node.js with colorful output.",
-  "main": "lib/print.js",
+  "name": "lowcon",
+  "version": "1.0.0",
+  "description": "Lowcon is a minimalist logging utility for Node.js that allows you to display styled, lowkey, colorful messages in the terminal. It features animated loading symbols, easy-to-read warnings, errors, success messages, and more—all without external dependencies.",
+  "main": "example.js",
   "directories": {
     "lib": "lib"
   },
@@ -11,21 +11,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OptiFiire/lowkey-console.git"
+    "url": "git+https://github.com/OptiFiire/lowcon.git"
   },
   "keywords": [
-    "console",
-    "log",
-    "logger",
-    "terminal",
-    "pretty",
     "lowkey",
-    "colorful"
+    "console",
+    "terminal",
+    "logger",
+    "log",
+    "colorful",
+    "pretty"
   ],
   "author": "OptiFire",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/OptiFiire/lowkey-console/issues"
+    "url": "https://github.com/OptiFiire/lowcon/issues"
   },
-  "homepage": "https://github.com/OptiFiire/lowkey-console#readme"
+  "homepage": "https://github.com/OptiFiire/lowcon#readme"
 }
