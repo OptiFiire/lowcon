@@ -1,4 +1,4 @@
-const { warn, error, success, debug, info, loading, stopLoading, setConfig } = require('./lib/print')
+const { warn, error, success, debug, info, loading, progress, stopLoading, setConfig } = require('./lib/print')
 
 setConfig({
 
@@ -10,30 +10,79 @@ setConfig({
         success: '✔',
         info: 'i',
         debug: '✇',
-        loading: ['○', '●'] // Array hence loading is animated.
+        loading: ['○', '●'],
+        progress: ['━', '━']
     },
 
     // Keep in mind that there be used only ANSI escape characters.
 
     colors: {
-        warning: '\x1b[33m', //
-        error: '\x1b[31m',
-        success: '\x1b[32m',
-        debug: '\x1B[38;5;141m',
-        info: '\x1b[36m',
-        loading: '\x1B[38;5;247m',
+        warning: '\x1b[33m',            // yellow
+        error: '\x1b[31m',              // red
+        success: '\x1b[32m',            // green
+        progress: '\x1b[32m',           // green
+        debug: '\x1B[38;5;141m',        // purple
+        info: '\x1b[36m',               // blue
+        loading: '\x1B[38;5;247m',      // gray
     }
 });
 
-warn('This is a warning with no prefix character!', '» ', true);
-error('This is an error with no prefix character!', '» ');
-success('This is a success with no prefix character!', '» ');
-info('This is an info message with no prefix character!', '» ');
-debug('This is a debug message with no prefix character!', '» ');
-loading('This is a loading message with no prefix character...', '» ');
+warn('This is a warning!',
+    {
+        useBrackets: false,
+        keepColoring: false,
+        prefixCharacter: '» '
+    });
 
-// Simulate a loading state for 3 seconds.
+error('This is an error!',
+    {
+        useBrackets: false,
+        keepColoring: false,
+        prefixCharacter: '» '
+    });
 
-setTimeout(() => {
-    stopLoading();
-}, 10_000);
+success('This is a success!',
+    {
+        useBrackets: false,
+        keepColoring: false,
+        prefixCharacter: '» '
+    });
+
+info('This is an info message!',
+    {
+        useBrackets: false,
+        keepColoring: false,
+        prefixCharacter: '» '
+    });
+
+debug('This is a debug message!',
+    {
+        useBrackets: false,
+        keepColoring: false,
+        prefixCharacter: '» '
+    });
+
+// const loadingSession = loading('This is a loading message!',
+//     {
+//         useBrackets: false,
+//         keepColoring: false,
+//         prefixCharacter: '» ',
+//         intervalSpeed: 500              // Interval speed for animation.
+//     });
+
+// setTimeout(() => stopLoading(loadingSession), 5000);    // Simulate a loading state for 3 seconds.
+
+let progressValue = 0;
+
+const interval = setInterval(() => {
+    progress('Downloading...', progressValue, {
+        useBrackets: true,
+        barWidth: 10,
+    });
+    progressValue += 1;
+
+    if (progressValue > 100) {
+        clearInterval(interval);
+        success('Download complete!');
+    }
+}, 100); // Simulate a progress state.
