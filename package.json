@@ -1,8 +1,8 @@
 {
   "name": "lowkey-console",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Lowcon is a minimalist logging utility for Node.js that allows you to display styled, lowkey, colorful messages in the terminal. It features animated loading symbols, easy-to-read warnings, errors, success messages, and more—all without external dependencies.",
-  "main": "example.js",
+  "main": "lib/print.js",
   "directories": {
     "lib": "lib"
   },

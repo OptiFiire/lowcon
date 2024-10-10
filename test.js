@@ -11,7 +11,10 @@ setConfig({
         info: 'i',
         debug: '✇',
         loading: ['○', '●'],
-        progress: ['━', '━']
+        progress: {
+            loaded: '━',
+            unloaded: '━'
+        }
     },
 
     // Keep in mind that there be used only ANSI escape characters.
@@ -24,6 +27,10 @@ setConfig({
         debug: '\x1B[38;5;141m',        // purple
         info: '\x1b[36m',               // blue
         loading: '\x1B[38;5;247m',      // gray
+        progress: {
+            loaded: '\x1b[32m',
+            unloaded: '\x1b[31m'
+        }
     }
 });
 
@@ -78,6 +85,7 @@ const interval = setInterval(() => {
     progress('Downloading...', progressValue, {
         useBrackets: true,
         barWidth: 10,
+        prefixCharacter: '» '
     });
     progressValue += 1;
 
