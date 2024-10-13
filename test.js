@@ -1,4 +1,4 @@
-const { warn, error, success, debug, info, loading, progress, stopLoading } = require('./lib/print')
+const { warn, error, success, debug, info, loading, progress, stopLoading } = require('./lib/print.js')
 
 // Simulate warn, error, success, info and debug state.
 
@@ -14,11 +14,15 @@ let progressValue = 0;
 
 const interval = setInterval(() => {
     progress('Downloading...', progressValue, {
-        useBrackets: false,
+        useBrackets: true,
         barWidth: 10,
         prefixCharacter: '»  ',
         onFinish: 'Download complete!'
+
+        // You can pass a function instead of a string to onFinish property :
+        // onFinish: () => { console.log('Download complete!'); }
     });
+
     progressValue += 5;
 
     if (progressValue > 100) clearInterval(interval);
@@ -29,10 +33,12 @@ const interval = setInterval(() => {
 const loadingSession = loading('This is a loading message.',
     {
         useBrackets: false,
-        keepColoring: false,
         prefixCharacter: '»  ',
         intervalSpeed: 500,
         onFinish: 'This is a loaded message.'
+
+        // You can pass a function instead of a string to onFinish property :
+        // onFinish: () => { console.log('Download complete!'); }
     });
 
 setTimeout(() => stopLoading(loadingSession), 5000);

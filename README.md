@@ -4,7 +4,7 @@
 ![npm downloads](https://img.shields.io/npm/dt/lowkey-console)
 ![license](https://img.shields.io/npm/l/lowkey-console)
 
-**Lowcon** (as known as *lowkey-console*) is a minimalist, highly customizable logging utility for Node.js that enhances your console output with styled, colorful messages. It features animated loading symbols, progress bars, customizable log prefixes, and supports various logging levels—all while using no external dependencies.
+**Lowcon** (as known as *lowkey-console*) is a minimalist, highly customizable logging utility for Node.js that enhances your console output with styled, colorful messages. It features animated loading symbols, progress bars, customizable log prefixes, and supports various logging levels. All while using no external dependencies.
 
 ## Features
 
@@ -34,7 +34,7 @@ npm install lowkey-console
 Here’s an example of how to use **Lowcon** in your Node.js project:
 
 ```js
-const { warn, error, success, debug, info, loading, progress, stopLoading } = require('lowkey-console');
+const { warn, error, success, debug, info, loading, progress, stopLoading } = require('lowkey-console')
 
 // Simulate warn, error, success, info and debug state.
 
@@ -43,37 +43,6 @@ error('This is an error.', { useBrackets: false, keepColoring: false, prefixChar
 success('This is a success.', { useBrackets: false, keepColoring: false, prefixCharacter: '»  ' });
 info('This is an info message.', { useBrackets: false, keepColoring: false, prefixCharacter: '»  ' });
 debug('This is a debug message.', { useBrackets: false, keepColoring: false, prefixCharacter: '»  ' });
-
-// Simulate a progress state.
-
-let progressValue = 0;
-
-const interval = setInterval(() => {
-    progress('Downloading...', progressValue, {
-        useBrackets: false,
-        barWidth: 10,
-        prefixCharacter: '»  ',
-        onFinish: 'Download complete!'
-    });
-    progressValue += 5;
-
-    if (progressValue > 100) clearInterval(interval);
-}, 100);
-
-// Simulate a loading state.
-
-const loadingSession = loading('This is a loading message.',
-    {
-        useBrackets: false,
-        keepColoring: false,
-        prefixCharacter: '»  ',
-        intervalSpeed: 500,
-        onFinish: 'This is a loaded message.'
-    });
-
-setTimeout(() => stopLoading(loadingSession), 5000);
-
-// NOTE : I DO NOT RECOMMEND USING PROGRESS AND LOADING STATE AT THE SAME TIME, AS IT MIGHT CAUSE SEVERE VISUAL GLITCH ON YOUR CONSOLE.
 ```
 
 ### Log Methods
@@ -89,13 +58,18 @@ setTimeout(() => stopLoading(loadingSession), 5000);
 Create animated loading indicators with custom symbols:
 
 ```js
-const loadingSession = loading('Loading data...', {
-    intervalSpeed: 500,
-    onFinish: 'Data loaded successfully!',
-    prefixCharacter: '» ',
-});
+const loadingSession = loading('This is a loading message.',
+    {
+        useBrackets: false,
+        prefixCharacter: '»  ',
+        intervalSpeed: 500,
+        onFinish: 'This is a loaded message.'
 
-setTimeout(() => stopLoading(loadingSession), 5000);  // Stops loading after 5 seconds
+        // You can pass a function instead of a string to onFinish property :
+        // onFinish: () => { console.log('Download complete!'); }
+    });
+
+setTimeout(() => stopLoading(loadingSession), 5000);
 ```
 
 ### Progress Bar
@@ -104,17 +78,25 @@ Track progress dynamically:
 
 ```js
 let progressValue = 0;
-const progressInterval = setInterval(() => {
+
+const interval = setInterval(() => {
     progress('Downloading...', progressValue, {
+        useBrackets: false,
         barWidth: 10,
-        prefixCharacter: '» ',
-        onFinish: 'Download complete!',
+        prefixCharacter: '»  ',
+        onFinish: 'Download complete!'
+
+        // You can pass a function instead of a string to onFinish property :
+        // onFinish: () => { console.log('Download complete!'); }
     });
+
     progressValue += 5;
 
-    if (progressValue > 100) clearInterval(progressInterval);
+    if (progressValue > 100) clearInterval(interval);
 }, 100);
 ```
+
+**⚠️ NOTE : I DO NOT RECOMMEND USING PROGRESS AND LOADING STATE AT THE SAME TIME, AS IT MIGHT CAUSE A VISUAL GLITCH ON YOUR CONSOLE.**
 
 ## Customization
 
@@ -126,13 +108,29 @@ setConfig({
         warning: '⚠',
         error: '✘',
         success: '✔',
-        loading: ['⏳', '⌛']      // Custom loading symbols
+        info: 'i',
+        debug: '✇',
+        loading: ['○', '●'],
+        progress: {
+
+            // Symbols is the same, but not the colors.
+
+            loaded: '━',
+            unloaded: '━'
+        }
     },
     colors: {
-        warning: '\x1b[33m',        // Yellow
-        error: '\x1b[31m',          // Red
-        success: '\x1b[32m',        // Green
-        loading: '\x1B[38;5;250m'   // Light gray
+        warning: colors.yellow,
+        error: colors.red,
+        success: colors.green,
+        debug: colors.purple,
+        info: colors.blue,
+        loading: colors.lightYellow,
+        progress: {
+            brackets: colors.white,
+            loaded: colors.cyan,
+            unloaded: colors.blue
+        }
     }
 });
 ```
