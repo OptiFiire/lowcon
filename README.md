@@ -1,8 +1,8 @@
 # Lowcon
 
-![npm version](https://img.shields.io/npm/v/lowkey-console)
-![npm downloads](https://img.shields.io/npm/dt/lowkey-console)
-![license](https://img.shields.io/npm/l/lowkey-console)
+![NPM Version](https://img.shields.io/npm/v/lowkey-console)
+![NPM Downloads](https://img.shields.io/npm/dt/lowkey-console)
+![License](https://img.shields.io/npm/l/lowkey-console)
 
 **Lowcon** (as known as *lowkey-console*) is a minimalist, highly customizable logging utility for Node.js that enhances your console output with styled, colorful messages. It features animated loading symbols, progress bars, customizable log prefixes, and supports various logging levels. All while using no external dependencies.
 
@@ -120,16 +120,16 @@ setConfig({
         }
     },
     colors: {
-        warning: colors.yellow,
-        error: colors.red,
-        success: colors.green,
-        debug: colors.purple,
-        info: colors.blue,
-        loading: colors.lightYellow,
+        warning: '\x1b[33m',
+        error: '\x1b[31m',
+        success: '\x1b[32m',
+        debug: '\x1B[38;5;141m',
+        info: '\x1b[36m',
+        loading: '\x1b[38;5;227m',
         progress: {
-            brackets: colors.white,
-            loaded: colors.cyan,
-            unloaded: colors.blue
+            brackets: '\x1b[37m',
+            loaded: '\x1b[38;5;123m',
+            unloaded:   '\x1b[36m',
         }
     }
 });
