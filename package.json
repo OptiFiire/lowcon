@@ -1,10 +1,11 @@
 {
   "name": "lowkey-console",
   "version": "1.0.8",
-  "description": "Lowcon (as known as lowkey-console) is a minimalist, highly customizable logging utility for Node.js that enhances your console output with styled, colorful messages. It features animated loading symbols, progress bars, customizable log prefixes, and supports various logging levels. All while using no external dependencies.",
-  "main": "lib/print.js",
+  "description": "Lowcon (as known as lowkey-console) is a minimalist, highly customizable logging utility for Node.js that enhances your console output with styled, colorful messages. It features animated loading indicators, progress bars, customizable log prefixes, and supports various logging levels.",
+  "main": "lib/index.js",
+  "type": "module",
   "directories": {
-    "lib": "lib/print.js"
+    "lib": "lib/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,12 +21,22 @@
     "logger",
     "log",
     "colorful",
-    "pretty"
+    "pretty",
+    "ora",
+    "progress",
+    "cli",
+    "loading",
+    "debug"
   ],
   "author": "OptiFire",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/OptiFiire/lowcon/issues"
   },
-  "homepage": "https://github.com/OptiFiire/lowcon#readme"
+  "homepage": "https://github.com/OptiFiire/lowcon#readme",
+  "dependencies": {
+    "ansi-colors": "^4.1.3",
+    "cli-progress": "^3.12.0",
+    "ora": "^8.1.0"
+  }
 }
