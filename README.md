@@ -38,14 +38,15 @@ npm install lowkey-console
 Here’s an example of how to use **Lowcon** in your Node.js project:
 
 ```js
-const { warn, error, success, debug, info, loading, progress } = require('lowkey-console');
+import lowcon from 'lowkey-console'
 
-// Log examples
-warn('This is a warning.', { useBrackets: false, keepColoring: false, prefixChar: '»  ' });
-error('This is an error.', { useBrackets: true, keepColoring: true });
-success('This is a success message.');
-info('This is an informational message.', { prefixChar: '* ' });
-debug('Debugging is active.');
+// Simulate warn, error, success, info and debug state.
+
+lowcon.warn('This is a warning.', { useBrackets: false, keepColoring: false, prefixChar: '»  ' });
+lowcon.error('This is an error.', { useBrackets: false, keepColoring: false, prefixChar: '»  ' });
+lowcon.success('This is a success.', { useBrackets: false, keepColoring: false, prefixChar: '»  ' });
+lowcon.info('This is an info.', { useBrackets: false, keepColoring: false, prefixChar: '»  ' });
+lowcon.debug('This is a debug.', { useBrackets: false, keepColoring: false, prefixChar: '»  ' });
 ```
 
 ### Log Methods
@@ -61,16 +62,17 @@ debug('Debugging is active.');
 Create dynamic loading indicators:
 
 ```js
-const loader = loading('Loading data...', {
-    useBrackets: false,
-    prefixChar: '»  ',
-    interval: 100,
-    onSuccess: 'Load complete!',
-    onFail: 'Loading failed!'
-});
+// Simulate a loading state.
 
-// Simulate a process
-setTimeout(() => loader.success(), 3000);
+const loadingSession = lowcon.loading('This is a loading message...',
+    {
+        useBrackets: false,
+        keepColoring: false,
+        prefixChar: '» ',
+        onSuccess: (data) => `This is a successfully loaded message with status : ${data.code}`,
+    })
+
+setTimeout(() => loadingSession.success({ code: 204 }), 5000);
 ```
 
 ### Progress Bar
@@ -80,21 +82,22 @@ Track the progress of an ongoing task:
 ```js
 let progressValue = 0;
 
-const progressBar = progress('Downloading...', 0, {
-    useBrackets: true,
+const progressSession = lowcon.progress('Downloading...', progressValue, {
+    useBrackets: false,
+    keepColoring: false,
     barWidth: 10,
     prefixChar: '»  ',
-    onSuccess: 'Download complete!',
-    onFail: 'Download failed.'
+    onSuccess: (data) => `This is a successful progress message with status : ${data.code}`,
+    onFail: (data) => `This is an failed progress message with status : ${data.code}`
 });
 
-const interval = setInterval(() => {
-    progressValue += 5;
-    progressBar.update(progressValue);
-    
+const timer = setInterval(function () {
+    progressValue++
+    progressSession.update(progressValue)
+
     if (progressValue >= 100) {
-        clearInterval(interval);
-        progressBar.succeed();
+        clearInterval(timer);
+        progressSession.succeed({ code: 200 });
     }
 }, 100);
 ```
@@ -104,29 +107,29 @@ const interval = setInterval(() => {
 You can easily modify log colors, symbols, and other settings with `setConfig()`:
 
 ```js
-const { setConfig } = require('lowkey-console');
+import { setConfig, ansiColors } = require('lowkey-console');
 
 setConfig({
     symbols: {
         warning: '⚠',
         error: '✘',
         success: '✔',
-        info: 'ℹ',
+        info: 'i',
         debug: '✇',
-        loading: ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'],
+        loading: ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"],
         progress: {
             loaded: '█',
             unloaded: '▒'
         }
     },
     colors: {
-        warning: '\x1b[33m',
-        error: '\x1b[31m',
-        success: '\x1b[32m',
-        info: '\x1b[36m',
-        debug: '\x1b[35m',
-        loading: '\x1b[34m',
-        progress: '\x1b[37m'
+        warning: ansiColors.yellow,
+        error: ansiColors.red,
+        success: ansiColors.green,
+        debug: ansiColors.magenta,
+        info: ansiColors.blue,
+        loading: ansiColors.cyan,
+        progress: ansiColors.whiteBright
     }
 });
 ```

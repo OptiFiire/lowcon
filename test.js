@@ -1,6 +1,5 @@
 import lowcon from './lib/index.js';
 
-
 // Simulate warn, error, success, info and debug state.
 
 lowcon.warn('This is a warning.', { useBrackets: false, keepColoring: false, prefixChar: '»  ' });
