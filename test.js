@@ -7,7 +7,7 @@ lowcon.error('This is an error.', { useBrackets: false, keepColoring: false, pre
 lowcon.success('This is a success.', { useBrackets: false, keepColoring: false, prefixChar: '»  ' });
 lowcon.info('This is an info.', { useBrackets: false, keepColoring: false, prefixChar: '»  ' });
 lowcon.debug('This is a debug.', { useBrackets: false, keepColoring: false, prefixChar: '»  ' });
-
+lowcon.question('This is a question: ', { useBrackets: false, keepColoring: false, prefixChar: '»  ' })
 
 // Simulate a loading state.
 
