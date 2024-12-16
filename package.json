@@ -1,6 +1,6 @@
 {
   "name": "lowkey-console",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "Lowcon (as known as lowkey-console) is a minimalist, highly customizable logging utility for Node.js that enhances your console output with styled, colorful messages. It features animated loading indicators, progress bars, customizable log prefixes, and supports various logging levels.",
   "main": "lib/index.js",
   "type": "module",
